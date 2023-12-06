@@ -57,7 +57,7 @@ public class DisplayActivity extends AppCompatActivity {
     TextView title, estabinfo, floorinfo, history, loctext;
     DatabaseHandler db;
     RecyclerView rv, rv1, rv2;
-    String blockname = "";
+    String blockname = "",block="",url="";
     MyListAdapter ml;
     TextToSpeech textToSpeech;
     ImageButton cb;
@@ -190,7 +190,17 @@ public class DisplayActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Your code to run after a delay. in my case in another handler
-                p.speak("You are in front of " + blockname + ". To know more about the block, please refer to the details below.", TextToSpeech.QUEUE_FLUSH);
+
+                if (blockname.equals("Block 2"))
+                    p.speak("You are in front of" + blockname+".To your left is the kiosk, which serves a variety of refreshments. To your right is the football ground", TextToSpeech.QUEUE_FLUSH);
+                else if (blockname.equals("Block 1"))
+                    p.speak("You are in front of" + blockname+".To your left is Nandini which serves a variety of refreshments. To your right is the UG Library", TextToSpeech.QUEUE_FLUSH);
+                else if (blockname.equals("Central Block"))
+                    p.speak("You are in front of" + blockname+".The cafeteria Gourmet is present on the lower ground floor of this block. To your left is the basketball court and to your right is the two wheeler parking area", TextToSpeech.QUEUE_FLUSH);
+                else if (blockname.equals("Block 4"))
+                    p.speak("You are in front of" + blockname+".To your left is the Research and Development Block and to your right is the Boys Hostel - K.E Hall. The fourth block cafeteria is in the basement.", TextToSpeech.QUEUE_FLUSH);
+                else if (blockname.equals("R&D Block"))
+                    p.speak("You are in front of" + blockname+".To your left is the Back gate and to your right is Block 4.", TextToSpeech.QUEUE_FLUSH);
             }
         }, 3000);
 
@@ -429,9 +439,18 @@ public class DisplayActivity extends AppCompatActivity {
         vrbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(DisplayActivity.this, PanaromaTrial.class);
-                i.putExtra("blockname",blockname);
-                startActivity(i);
+                if(blockname!="R&D Block")
+                {
+                    block=blockname.toLowerCase().replaceAll("\\s+","");
+                    url = "https://elaborate-jelly-61eaf7.netlify.app/"+block;
+                }
+                else {
+                    url = "https://elaborate-jelly-61eaf7.netlify.app/rnd";
+                }
+                CustomTabsIntent intent1 = new CustomTabsIntent.Builder()
+                        .build();
+                intent1.launchUrl(DisplayActivity.this, Uri.parse(url));
+
             }
         });
 

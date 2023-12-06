@@ -104,7 +104,7 @@ public class HomeScreen extends AppCompatActivity {
         savefab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(HomeScreen.this, PanaromaTrial.class);
+                Intent i= new Intent(HomeScreen.this, MainActivity.class);
                 startActivity(i);
             }
         });

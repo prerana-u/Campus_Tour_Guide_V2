@@ -18,18 +18,8 @@ public class PanaromaTrial extends AppCompatActivity {
         setContentView(R.layout.activity_panaroma_trial);
         Intent i= getIntent();
         String blockname = i.getStringExtra("blockname");
-        if(blockname!="R&D Block")
-        {
-            block=blockname.toLowerCase().replaceAll("\\s+","");
-           url = "https://elaborate-jelly-61eaf7.netlify.app/"+block;
-        }
-        else {
-            url = "https://elaborate-jelly-61eaf7.netlify.app/rnd";
-        }
 
-        CustomTabsIntent intent1 = new CustomTabsIntent.Builder()
-                .build();
-        intent1.launchUrl(PanaromaTrial.this, Uri.parse(url));
+
 
 
     }
