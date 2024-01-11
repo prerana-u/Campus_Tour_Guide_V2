@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -94,7 +95,6 @@ public class ObjectDetectionActivity extends AbstractCameraXActivity<ObjectDetec
         }
         else if (mResultView.title.equals("Block 4")) {
             estabinfo.setText("2015");
-           // history.setText("Block IV of the central campus was established and inaugurated in the year 2015. It houses some of the important facilities of the campus such as the Center for Digital Innovation and the K.E Auditorium. The basement of the block also houses a cafeteria with a variety of eateries. ");
             floorinfo.setText("6");
 
         }
@@ -103,6 +103,22 @@ public class ObjectDetectionActivity extends AbstractCameraXActivity<ObjectDetec
             estabinfo.setText("2021");
            // history.setText("NA");
             floorinfo.setText("7");
+
+        }
+        else if (mResultView.title.equals("Block 3")) {
+            estabinfo.setText("1990");
+
+            floorinfo.setText("1");
+
+        }
+        else if (mResultView.title.equals("Christ Junior College")) {
+            estabinfo.setText("2002");
+            floorinfo.setText("3");
+
+        }
+        else if (mResultView.title.equals("Audi Block")) {
+            estabinfo.setText("2006");
+            floorinfo.setText("5");
 
         }
         title1=mResultView.title;
@@ -140,7 +156,7 @@ public class ObjectDetectionActivity extends AbstractCameraXActivity<ObjectDetec
     protected AnalysisResult analyzeImage(ImageProxy image, int rotationDegrees) {
         try {
             if (mModule == null) {
-                mModule = LiteModuleLoader.load(MainActivity.assetFilePath(getApplicationContext(), "best.torchscript4.ptl"));
+                mModule = LiteModuleLoader.load(MainActivity.assetFilePath(getApplicationContext(), "best.torchscript3.ptl"));
             }
         } catch (IOException e) {
             Log.e("Object Detection", "Error reading assets", e);
@@ -163,6 +179,10 @@ public class ObjectDetectionActivity extends AbstractCameraXActivity<ObjectDetec
         float ivScaleY = (float)mResultView.getHeight() / bitmap.getHeight();
 
         final ArrayList<Result> results = PrePostProcessor.outputsToNMSPredictions(outputs, imgScaleX, imgScaleY, ivScaleX, ivScaleY, 0, 0);
+//        System.out.println("RESULT: "+results);
+//        if (results.isEmpty()==true){
+//            Toast.makeText(getApplicationContext(),"Please try a different angle", Toast.LENGTH_SHORT).show();
+//        }
         return new AnalysisResult(results);
     }
 

@@ -22,7 +22,7 @@ public class ResultView extends View {
 
     private final static int TEXT_X = 40;
     private final static int TEXT_Y = 35;
-    private final static int TEXT_WIDTH = 260;
+    private final static int TEXT_WIDTH = 360;
     private final static int TEXT_HEIGHT = 50;
 
     private Paint mPaintRectangle;

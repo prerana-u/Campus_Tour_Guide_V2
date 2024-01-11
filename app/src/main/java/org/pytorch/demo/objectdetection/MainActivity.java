@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private ImageView mImageView;
     private ResultView mResultView;
+    ProgressBar progressBar;
     private Button mButtonDetect;
     private ProgressBar mProgressBar;
     private Bitmap mBitmap = null;
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 //        mImageView.setImageBitmap(mBitmap);
         mResultView = findViewById(R.id.resultView);
         mResultView.setVisibility(View.INVISIBLE);
+        progressBar=findViewById(R.id.progressbar);
         VideoView videoView =(VideoView)findViewById(R.id.videoView);
 
         //Creating MediaController
@@ -115,6 +119,14 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         videoView.setVideoURI(uri);
         videoView.requestFocus();
         videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+            public void onPrepared(MediaPlayer mp) {
+                // TODO Auto-generated method stub
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        });
 
 //        final Button buttonTest = findViewById(R.id.testButton);
 //        buttonTest.setText(("Test Image 1/3"));
@@ -175,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
 
         try {
-            mModule = LiteModuleLoader.load(MainActivity.assetFilePath(getApplicationContext(), "best.torchscript4.ptl"));
+            mModule = LiteModuleLoader.load(MainActivity.assetFilePath(getApplicationContext(), "best.torchscript3.ptl"));
             BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("classes.txt")));
             String line;
             List<String> classes = new ArrayList<>();

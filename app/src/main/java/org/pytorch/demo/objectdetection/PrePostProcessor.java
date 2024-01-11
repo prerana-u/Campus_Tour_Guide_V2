@@ -7,6 +7,7 @@
 package org.pytorch.demo.objectdetection;
 
 import android.graphics.Rect;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class PrePostProcessor {
 
     // model output is of size 25200*(num_of_class+5)
     private static int mOutputRow = 25200; // as decided by the YOLOv5 model for input image of size 640*640
-    private static int mOutputColumn = 10; // left, top, right, bottom, score and 80 class probability
+    private static int mOutputColumn = 13; // left, top, right, bottom, score and 80 class probability
     private static float mThreshold = 0.50f; // score above which a detection is generated
     private static int mNmsLimit = 1;
 
@@ -143,6 +144,7 @@ public class PrePostProcessor {
                 Result result = new Result(cls, outputs[i*mOutputColumn+4], rect);
                 results.add(result);
             }
+
         }
         return nonMaxSuppression(results, mNmsLimit, mThreshold);
     }

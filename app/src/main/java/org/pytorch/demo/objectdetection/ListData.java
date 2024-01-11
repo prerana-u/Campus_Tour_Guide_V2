@@ -1,10 +1,11 @@
 package org.pytorch.demo.objectdetection;
 
 public class ListData{
-    private String name,roomno;
+    private String name,roomno,floor;
 
-    public ListData(String name, String roomno) {
+    public ListData(String name, String floor, String roomno) {
         this.name = name;
+        this.floor=floor;
         this.roomno = roomno;
     }
     public String getName() {
@@ -18,5 +19,12 @@ public class ListData{
     }
     public void setImgId(String roomno) {
         this.roomno = roomno;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+    public void setFloor(String floor) {
+        this.floor = floor;
     }
 }

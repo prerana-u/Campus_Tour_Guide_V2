@@ -69,9 +69,6 @@ public class DisplayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_display);
         Intent intent = getIntent();
         blockname = intent.getStringExtra("blockname");
@@ -160,16 +157,36 @@ public class DisplayActivity extends AppCompatActivity {
         db.addData(new Building_Info(161, "Christ Incubation Center", "NA", "office", "seventh floor", "r&d block"));
         db.addData(new Building_Info(162, "Christ Consulting", "NA", "office", "seventh floor", "r&d block"));
         db.addData(new Building_Info(163, "Center for Digital Innovation", "NA", "office", "seventh floor", "r&d block"));
+        db.addData(new Building_Info(164, "Center for Peace Praxis", "NA", "office", "ground floor", "block 3"));
+        db.addData(new Building_Info(165, "Department of Media Studies and Economics", "NA", "department", "ground floor", "block 3"));
+        db.addData(new Building_Info(166, "Principal's Office", "NA", "office", "ground floor", "christ junior college"));
+        db.addData(new Building_Info(167, "Vice Principal's Office", "NA", "office", "ground floor", "christ junior college"));
+        db.addData(new Building_Info(168, "Auditorium", "NA", "others", "ground floor", "christ junior college"));
+        db.addData(new Building_Info(169, "Sport's Department", "P06", "department", "ground floor", "christ junior college"));
+        db.addData(new Building_Info(170, "Counselling Centre", "P10", "office", "ground floor", "christ junior college"));
+        db.addData(new Building_Info(171, "Audio Visual Room", "P108", "others", "first floor", "christ junior college"));
+        db.addData(new Building_Info(172, "Prayer Hall", "NA", "others", "first floor", "christ junior college"));
+        db.addData(new Building_Info(173, "Library", "NA", "others", "second floor", "christ junior college"));
+        db.addData(new Building_Info(174, "South Indian Bank Office", "NA", "others", "ground floor", "audi block"));
+        db.addData(new Building_Info(175, "Center for Academic Excellence", "NA", "office", "ground floor", "audi block"));
+        db.addData(new Building_Info(176, "Lounge", "912", "others", "first floor", "audi block"));
+        db.addData(new Building_Info(177, "Department of Business and Management", "NA", "department", "first floor", "audi block"));
+        db.addData(new Building_Info(178, "Office of International Affairs", "916", "office", "second floor", "audi block"));
+        db.addData(new Building_Info(179, "MBA Computer Center", "914", "others", "second floor", "audi block"));
+        db.addData(new Building_Info(180, "UGC CPE Media Lab", "913", "others", "second floor", "audi block"));
+        db.addData(new Building_Info(181, "Main Auditorium", "NA", "others", "third floor", "audi block"));
 
         rv = findViewById(R.id.officedatarv);
         rv1 = findViewById(R.id.officedatarv1);
         rv2 = findViewById(R.id.officedatarv2);
-
-        rv.setHasFixedSize(false);
+        rv.setNestedScrollingEnabled(false);
+        rv1.setNestedScrollingEnabled(false);
+        rv2.setNestedScrollingEnabled(false);
 
         modelArrayList = new ArrayList<ListData>();
 
         cardView = findViewById(R.id.base_cardview);
+
         arrow = findViewById(R.id.arrow_button);
         hiddenView = findViewById(R.id.hidden_view);
         cardView1 = findViewById(R.id.base_cardview1);
@@ -201,6 +218,12 @@ public class DisplayActivity extends AppCompatActivity {
                     p.speak("You are in front of" + blockname+".To your left is the Research and Development Block and to your right is the Boys Hostel - K.E Hall. The fourth block cafeteria is in the basement.", TextToSpeech.QUEUE_FLUSH);
                 else if (blockname.equals("R&D Block"))
                     p.speak("You are in front of" + blockname+".To your left is the Back gate and to your right is Block 4.", TextToSpeech.QUEUE_FLUSH);
+                else if (blockname.equals("Block 3"))
+                    p.speak("You are in front of" + blockname+".To your left is Mingos which serves a variety of refreshments and to your right is Block 4.", TextToSpeech.QUEUE_FLUSH);
+                else if (blockname.equals("Christ Junior College"))
+                    p.speak("You are in front of" + blockname+".To your left is the Central Block and to your right is Audi Block", TextToSpeech.QUEUE_FLUSH);
+                else if (blockname.equals("Audi Block"))
+                    p.speak("You are in front of" + blockname+".To your left is the Christ Junior College and to your right is the Christ Front Gate", TextToSpeech.QUEUE_FLUSH);
             }
         }, 3000);
 
@@ -427,6 +450,24 @@ public class DisplayActivity extends AppCompatActivity {
             floorinfo.setText("7");
 
         }
+        else if (blockname.equals("Block 3")) {
+            estabinfo.setText("1990");
+            history.setText("Block 3 is one of the smallest blocks present in the campus, and is located near the Bird's Park area. The block contains the classrooms for the Department of Media Studies and Economics.");
+            floorinfo.setText("1");
+
+        }
+        else if (blockname.equals("Christ Junior College")) {
+            estabinfo.setText("2002");
+            history.setText("Christ Junior College was established in the year 2002. The block houses the classrooms for PUC students, along with various other facilities as a Counselling Center and the Junior College Library.");
+            floorinfo.setText("3");
+
+        }
+        else if (blockname.equals("Audi Block")) {
+            estabinfo.setText("2006");
+            history.setText("The Audi Block was established in the year 2006. It is named after the Main Auditorium of the Central Campus which is present on the 3rd floor of this block. It also houses the South Indian Bank University Branch Office on the ground floor.");
+            floorinfo.setText("5");
+
+        }
 
 //        expand.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -440,12 +481,19 @@ public class DisplayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(blockname!="R&D Block")
+
                 {
-                    block=blockname.toLowerCase().replaceAll("\\s+","");
-                    url = "https://elaborate-jelly-61eaf7.netlify.app/"+block;
+                    if(blockname.equals("Christ Junior College")){
+                        url = "http://vocal-chaja-8c1293.netlify.app/cjc";
+                    }
+                    else {
+                        block=blockname.toLowerCase().replaceAll("\\s+","");
+                        url = "http://vocal-chaja-8c1293.netlify.app/"+block;
+                    }
+
                 }
                 else {
-                    url = "https://elaborate-jelly-61eaf7.netlify.app/rnd";
+                    url = "http://vocal-chaja-8c1293.netlify.app/rnd";
                 }
                 CustomTabsIntent intent1 = new CustomTabsIntent.Builder()
                         .build();
@@ -465,7 +513,7 @@ public class DisplayActivity extends AppCompatActivity {
         for (Building_Info cn : data) {
 
             //   Toast.makeText(getApplicationContext(),cn.getName(),Toast.LENGTH_SHORT).show();
-            modelArrayList.add(new ListData(cn.getName(), cn.getRoomNo()));
+            modelArrayList.add(new ListData(cn.getName(), cn.getFloors(), cn.getRoomNo()));
             ml = new MyListAdapter(modelArrayList);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
@@ -483,54 +531,21 @@ public class DisplayActivity extends AppCompatActivity {
         }
     }
 
-    //    public  void speakData()
-//    {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            textToSpeech.speak(blockname,TextToSpeech.QUEUE_FLUSH,null,null);
-//        } else {
-//            textToSpeech.speak(blockname, TextToSpeech.QUEUE_FLUSH, null);
-//        }
-//    }
-//    private void loadPanoramaImage() {
-//        VrPanoramaView.Options options = new VrPanoramaView.Options();
-//        panoramaView.setPureTouchTracking(true);
-//        panoramaView.setStereoModeButtonEnabled(false);
-//        panoramaView.setFullscreenButtonEnabled(true);
-//        panoramaView.setVerticalFadingEdgeEnabled(false);
-//        panoramaView.setVerticalScrollBarEnabled(false);
-//        try {
-//            options.inputType = VrPanoramaView.Options.TYPE_MONO;
-////            Picasso
-////                    .get()
-////                    .load("https://firebasestorage.googleapis.com/v0/b/mobile-app-da42b.appspot.com/o/christ_football_ground.jpg?alt=media&token=9f9e3498-62c1-4bd4-9943-222f3492d102")
-////                    .into(panoramaView);
-//            panoramaView.loadImageFromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.block2_surroundings), options);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
+    public static String toTitleCase(String input) {
+        StringBuilder titleCase = new StringBuilder(input.length());
+        boolean nextTitleCase = true;
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        plManager.onResume();
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        plManager.onPause();
-//        super.onPause();
-//    }
-//    @Override
-//    protected void onDestroy() {
-//        plManager.onDestroy();
-//        super.onDestroy();
-//    }
-//
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        return plManager.onTouchEvent(event);
-//    }
+        for (char c : input.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            }
 
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
 }

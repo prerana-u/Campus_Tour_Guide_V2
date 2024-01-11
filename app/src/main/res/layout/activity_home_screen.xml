@@ -34,6 +34,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/editfab"
         android:layout_width="wrap_content"
@@ -48,19 +50,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_double_arrow_24" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/savefab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:backgroundTint="#197B80"
-        android:tint="#ffffff"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/editfab"
-        app:layout_constraintEnd_toEndOf="@+id/editfab"
-        app:srcCompat="@drawable/baseline_location_on_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/signupfab"
@@ -72,8 +61,49 @@
         android:backgroundTint="#197B80"
         android:tint="#ffffff"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/savefab"
-        app:layout_constraintEnd_toEndOf="@+id/savefab"
+        app:layout_constraintBottom_toTopOf="@+id/editfab"
+        app:layout_constraintEnd_toEndOf="@+id/editfab"
         app:srcCompat="@drawable/baseline_camera_alt_24" />
+
+    <TextView
+        android:id="@+id/fabtext1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Live View"
+        android:visibility="invisible"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/signupfab"
+        app:layout_constraintEnd_toStartOf="@+id/signupfab"
+        app:layout_constraintTop_toTopOf="@+id/signupfab" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/savefab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:backgroundTint="#197B80"
+        android:tint="#ffffff"
+
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/signupfab"
+        app:layout_constraintEnd_toEndOf="@+id/signupfab"
+        app:srcCompat="@drawable/baseline_360_24" />
+
+    <TextView
+        android:id="@+id/fabtext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="360 Tour"
+        android:visibility="invisible"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/savefab"
+        app:layout_constraintEnd_toStartOf="@+id/savefab"
+        app:layout_constraintTop_toTopOf="@+id/savefab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

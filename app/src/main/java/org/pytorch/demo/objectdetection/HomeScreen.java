@@ -2,6 +2,7 @@ package org.pytorch.demo.objectdetection;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -13,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
@@ -45,6 +47,7 @@ public class HomeScreen extends AppCompatActivity {
     // Initializing other items
     // from layout file
     FloatingActionButton b, savefab, signupfab;
+    TextView fabtext1,fabtext2;
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
     int PERMISSION_ID = 44;
 
@@ -65,10 +68,16 @@ public class HomeScreen extends AppCompatActivity {
             e.printStackTrace();
         }
         b=findViewById(R.id.editfab);
-        savefab= findViewById(R.id.savefab);
+
         signupfab=findViewById(R.id.signupfab);
+        savefab=findViewById(R.id.savefab);
+        fabtext1=findViewById(R.id.fabtext1);
+        fabtext2=findViewById(R.id.fabtext2);
+
         savefab.setVisibility(View.GONE);
         signupfab.setVisibility(View.GONE);
+        fabtext1.setVisibility(View.GONE);
+        fabtext2.setVisibility(View.GONE);
         fabOpen = AnimationUtils.loadAnimation
                 (this,R.anim.from_bottom_animation);
         fabClose = AnimationUtils.loadAnimation
@@ -89,6 +98,8 @@ public class HomeScreen extends AppCompatActivity {
                     // texts and FABs VISIBLE.
                     savefab.show();
                     signupfab.show();
+                    fabtext1.setVisibility(View.VISIBLE);
+                    fabtext2.setVisibility(View.VISIBLE);
                     signupfab.setClickable(true);
                     savefab.setClickable(true);
                     isAllFabsVisible = true;
@@ -96,24 +107,29 @@ public class HomeScreen extends AppCompatActivity {
 
                     savefab.setVisibility(View.GONE);
                     signupfab.setVisibility(View.GONE);
+                    fabtext1.setVisibility(View.GONE);
+                    fabtext2.setVisibility(View.GONE);
                     isAllFabsVisible = false;
                 }
             }
 
         });
-        savefab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(HomeScreen.this, MainActivity.class);
-                startActivity(i);
-            }
-        });
+
 
         signupfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(HomeScreen.this, MainActivity.class);
                 startActivity(i);
+            }
+        });
+        savefab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://vocal-chaja-8c1293.netlify.app/";
+                CustomTabsIntent intent1 = new CustomTabsIntent.Builder()
+                        .build();
+                intent1.launchUrl(HomeScreen.this, Uri.parse(url));
             }
         });
 //        new Handler().postDelayed(new Runnable() {
@@ -128,13 +144,13 @@ public class HomeScreen extends AppCompatActivity {
     private void animateFab(){
         if (isAllFabsVisible){
             b.startAnimation(rotateForward);
-            savefab.startAnimation(fabClose);
+           savefab.startAnimation(fabClose);
             signupfab.startAnimation(fabClose);
             savefab.setClickable(false);
             signupfab.setClickable(false);
         }else {
             b.startAnimation(rotateBackward);
-            savefab.startAnimation(fabOpen);
+           savefab.startAnimation(fabOpen);
             signupfab.startAnimation(fabOpen);
             signupfab.setClickable(true);
             savefab.setClickable(true);

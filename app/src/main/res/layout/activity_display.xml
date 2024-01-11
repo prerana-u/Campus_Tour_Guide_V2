@@ -8,7 +8,7 @@
     tools:context=".DisplayActivity">
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -387,44 +387,82 @@
                             app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
 
                             <!-- Child LinearLayout 1 -->
-                            <LinearLayout
+                            <GridLayout
+                                android:id="@+id/GridLayout1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:columnCount="4"
                                 android:orientation="horizontal">
 
-                                <TextView
-
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/inter"
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
                                     android:gravity="left"
-                                    android:text="Office"
-                                    android:textColor="#424242"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
+                                    android:padding="0dp"
+                                    android:layout_columnWeight="2">
 
-                                <TextView
+                                    <TextView
 
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="left"
+                                        android:text="Office"
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="left"
+                                    android:layout_columnWeight="1">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="left"
+                                        android:text="Floor No."
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center"
+                                    android:layout_columnWeight="1">
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="right"
+                                        android:text="Room No."
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+
+
+                            </GridLayout>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/officedatarv"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginRight="20dp"
-                                    android:fontFamily="@font/inter"
-                                    android:gravity="right"
-                                    android:text="Room No."
-                                    android:textColor="#424242"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="30dp" />
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/officedatarv"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="30dp" />
+
                         </LinearLayout>
 
 
@@ -517,39 +555,74 @@
                             app:layout_constraintTop_toBottomOf="@+id/fixed_layout1">
 
                             <!-- Child LinearLayout 1 -->
-                            <LinearLayout
+                            <GridLayout
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:columnCount="4"
                                 android:orientation="horizontal">
 
-                                <TextView
-
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/inter"
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
                                     android:gravity="left"
-                                    android:text="Department"
-                                    android:textColor="#424242"
+                                    android:padding="0dp"
+                                    android:layout_columnWeight="2">
 
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
+                                    <TextView
 
-                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="left"
+                                        android:text="Department"
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
 
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginRight="20dp"
-                                    android:fontFamily="@font/inter"
-                                    android:gravity="right"
-                                    android:text="Room No."
-                                    android:textColor="#424242"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="left"
+                                    android:layout_columnWeight="1">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="left"
+                                        android:text="Floor No."
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center"
+                                    android:layout_columnWeight="1">
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="right"
+                                        android:text="Room No."
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+
+
+                            </GridLayout>
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/officedatarv1"
@@ -644,40 +717,74 @@
                             app:layout_constraintTop_toBottomOf="@+id/fixed_layout2">
 
                             <!-- Child LinearLayout 1 -->
-                            <LinearLayout
+                            <GridLayout
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:columnCount="4"
                                 android:orientation="horizontal">
 
-                                <TextView
-
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/inter"
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
                                     android:gravity="left"
-                                    android:text="Room"
-                                    android:textColor="#424242"
+                                    android:padding="0dp"
+                                    android:layout_columnWeight="2">
 
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
+                                    <TextView
 
-                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="left"
+                                        android:text="Room"
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
 
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginRight="20dp"
-                                    android:fontFamily="@font/inter"
-                                    android:gravity="right"
-                                    android:text="Room No."
-                                    android:textColor="#424242"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="left"
+                                    android:layout_columnWeight="1">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="left"
+                                        android:text="Floor No."
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
 
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center"
+                                    android:layout_columnWeight="1">
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/inter"
+                                        android:gravity="right"
+                                        android:text="Room No."
+                                        android:textColor="#424242"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+
+
+                            </GridLayout>
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/officedatarv2"
                                 android:layout_width="match_parent"
@@ -849,14 +956,14 @@
                 <Button
                     android:id="@+id/vrbutton"
                     android:layout_width="wrap_content"
-                    android:text="View VR"
+                    android:text="360 View Mode"
                     android:backgroundTint="#009688"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
